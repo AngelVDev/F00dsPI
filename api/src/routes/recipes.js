@@ -34,5 +34,36 @@ router.get("/recipes/:id", async (req, res) => {
     res.status(404).send("recipe not found or wrong id");
   }
 });
+router.post("/post", async (req, res) => {
+  const {
+    id,
+    image,
+    title,
+    summary,
+    score,
+    h_score,
+    steps,
+    diets,
+    price,
+    createdInDb,
+  } = req.body;
+
+  const recipeNew = await Recipe.create({
+    id,
+    image,
+    title,
+    summary,
+    score,
+    h_score,
+    steps,
+    price,
+    createdInDb,
+  });
+
+  let dietDb = await Diet.findAll({ where: { name: diets } });
+  recipeNew.addDiet(dietDb);
+
+  res.send("Recipe added : ¡SUCCESS!");
+});
 
 module.exports = router;
