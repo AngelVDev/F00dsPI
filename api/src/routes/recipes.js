@@ -34,7 +34,7 @@ router.get("/recipes/:id", async (req, res) => {
     res.status(404).send("recipe not found or wrong id");
   }
 });
-router.post("/post", async (req, res) => {
+router.post("/recipes", async (req, res) => {
   const {
     id,
     image,
