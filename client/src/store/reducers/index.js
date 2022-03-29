@@ -5,7 +5,7 @@ const initialState = {
   detail: [],
 };
 
-function rootReducer(state = initialState, action) {
+export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_RECIPES":
       return {
@@ -31,6 +31,35 @@ function rootReducer(state = initialState, action) {
     case "POST_RECIPE":
       return {
         ...state,
+      };
+    case "FILTER_NAME":
+      const sorted =
+        action.payload === "ASC"
+          ? state.dogs.sort((a, b) => {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.dogs.sort((a, b) => {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (a.name > b.name) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        recipes: sorted,
+      };
+    default:
+      return {
+        state,
       };
   }
 }

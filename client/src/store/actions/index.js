@@ -37,3 +37,15 @@ export function createRecipe(payload) {
     return response;
   };
 }
+export function orderByName(payload) {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: "FILTER_NAME",
+        payload: payload,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
