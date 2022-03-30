@@ -6,15 +6,20 @@ const { getAllRecipes } = require("../controllers/recipesController");
 router.get("/recipes", async (req, res) => {
   const { title } = req.query;
   const totalRecipes = await getAllRecipes();
-  if (title) {
-    const titleRecipe = await totalRecipes.filter((el) =>
-      el.title.toLowerCase().includes(title.toLowerCase())
-    );
-    titleRecipe.length
-      ? res.status(200).send(titleRecipe)
-      : res.status(404).send("Recipe not found");
-  } else {
-    res.status(200).send(totalRecipes);
+  try {
+    /*Try para el query */
+    if (title) {
+      const titleRecipe = await totalRecipes.filter((el) =>
+        el.title.toLowerCase().includes(title.toLowerCase())
+      );
+      titleRecipe.length
+        ? res.status(200).send(titleRecipe)
+        : res.status(404).send("Recipe not found");
+    } else {
+      res.status(200).send(totalRecipes);
+    }
+  } catch (err) {
+    console.log(err);
   }
 });
 
@@ -35,18 +40,8 @@ router.get("/recipes/:id", async (req, res) => {
   }
 });
 router.post("/recipes", async (req, res) => {
-  const {
-    id,
-    image,
-    title,
-    summary,
-    score,
-    h_score,
-    steps,
-    diets,
-    price,
-    createdInDb,
-  } = req.body;
+  const { id, image, title, summary, score, h_score, steps, diets, price } =
+    req.body;
 
   const recipeNew = await Recipe.create({
     id,
@@ -57,7 +52,6 @@ router.post("/recipes", async (req, res) => {
     h_score,
     steps,
     price,
-    createdInDb,
   });
 
   let dietDb = await Diet.findAll({ where: { name: diets } });

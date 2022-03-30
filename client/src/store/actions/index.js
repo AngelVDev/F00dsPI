@@ -1,16 +1,14 @@
 import axios from "axios";
-/*
-axios.get('http://localhost:3001/recipes',{});
-axios.get("http://localhost:3001/types",{});
-axios.get("http://localhost:3001/recipes?title=" + title);
-axios.get("http://localhost:3001/recipes/" + id);
-axios.post("http://localhost:3001/recipes", payload);
-*/
 
 export function getRecipes() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/recipes", {});
-    return dispatch({ type: "GET_RECIPES", payload: json.data });
+    try {
+      const response = await axios.get("http://localhost:3001/recipes");
+      let json = response.data;
+      dispatch({ type: "GET_RECIPES", payload: json });
+    } catch (error) {
+      return console.log("El error es éste, papu", error);
+    }
   };
 }
 export function getDietTypes() {
@@ -27,8 +25,12 @@ export function getQRecipes(title) {
 }
 export function getDetails(id) {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/recipes/" + id);
-    return dispatch({ type: "GET_DETAIL", payload: json.data });
+    try {
+      let json = await axios.get("http://localhost:3001/recipes/" + id);
+      return dispatch({ type: "GET_DETAIL", payload: json.data });
+    } catch (error) {
+      console.log("Qué pelotudo que está el día", error);
+    }
   };
 }
 export function createRecipe(payload) {

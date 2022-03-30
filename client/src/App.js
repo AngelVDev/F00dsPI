@@ -12,8 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/create" element={<Creator />} />
           <Route path="/home/:id" element={<Detail />} />
+          <Route path="/create" element={<Creator />} />
         </Routes>
       </div>
     </BrowserRouter>

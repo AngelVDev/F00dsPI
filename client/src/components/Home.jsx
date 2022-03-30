@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { getRecipes, orderByName } from "../store/actions";
+import { Link } from "react-router-dom";
 import Cards from "./Cards";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
 
 const Home = () => {
-  const allDiets = useSelector((state) => state.diets);
+  // const allDiets = useSelector((state) => state.diets);
   const dispatch = useDispatch();
-  const fetchAllRecipes = useSelector((state) => state.recipes);
+  const renderRecipes = useSelector((state) => state.allRecipes);
   //<------------PAGINATION------------------>
   const [currentPage, setCurrentPage] = useState(1);
   const [recPerPage, _setRecPerPage] = useState(9);
   const indexOfLastRec = currentPage * recPerPage;
   const indexOfFirstRec = indexOfLastRec - recPerPage;
-  const currentRecs = fetchAllRecipes.slice(indexOfFirstRec, indexOfLastRec);
+  const currentRecs = renderRecipes.slice(indexOfFirstRec, indexOfLastRec);
   const [_order, setOrder] = useState("");
 
   const PAGINATION = (pageNum) => {
@@ -52,7 +52,7 @@ const Home = () => {
         <SearchBar />
         <Pagination
           recPerPage={recPerPage}
-          fetchAllRecipes={fetchAllRecipes.length}
+          renderRecipes={renderRecipes.length}
           pagination={PAGINATION}
         />
         <label>
