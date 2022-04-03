@@ -12,8 +12,9 @@ import { Link } from "react-router-dom";
 import Cards from "./Cards";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
-
-const Home = () => {
+import Creator from "./Creator";
+//<--------------------HOME-------------------->
+function Home() {
   const allDiets = useSelector((state) => state.diets);
   const dispatch = useDispatch();
   const renderRecipes = useSelector((state) => state.allRecipes);
@@ -65,7 +66,7 @@ const Home = () => {
     <div>
       <nav>
         <button>
-          <Link>SHARE YOUR RECIPE</Link>
+          <Link to={<Creator/>}>SHARE YOUR RECIPE</Link>
         </button>
         <button onClick={(event) => handleClick(event)}>Clear filters</button>
         <SearchBar />
@@ -75,7 +76,7 @@ const Home = () => {
           pagination={PAGINATION}
         />
         <label>
-          {" "}
+          
           Sort by name
           <select onChange={(e) => handleName(e)} id="A-Z">
             <option value="ASC">A-Z</option>
@@ -83,7 +84,7 @@ const Home = () => {
           </select>
         </label>
         <label>
-          {" "}
+          
           Sort by score
           <select onChange={(e) => handleScore(e)} id="SCORE">
             <option value="ASC">Lo-to-Hi</option>
@@ -91,7 +92,7 @@ const Home = () => {
           </select>
         </label>
         <label>
-          {" "}
+          
           Show by existence
           <select onChange={e => handleCreations(e)} id="CREATED">
             <option value="ALL">ALL</option>
@@ -100,7 +101,7 @@ const Home = () => {
           </select>
         </label>
         <label>
-          {" "}
+          
           Show by diet/s
           <select onChange={e => handleDiets(e)} id="DIETS">
             <option value="All">All</option>

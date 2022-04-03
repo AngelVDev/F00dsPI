@@ -1,0 +1,6 @@
+.img {
+    border-radius: 3%;
+  max-width: 30%;
+  height: auto;
+  object-fit: fill;
+}
