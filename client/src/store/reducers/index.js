@@ -57,6 +57,52 @@ function rootReducer(state = initialState, action) {
         ...state,
         recipes: sorted,
       };
+    case "FILTER_CREATEDS":
+      const isCreated =
+        action.payload === "API"
+          ? state.allRecipes.filter((el) => el.createdInDb)
+          : state.allRecipes.filter((el) => !el.createdInDb);
+      return {
+        ...state,
+        recipes: action.payload === "ALL" ? state.allRecipes : isCreated,
+      };
+    case "FILTER_BY_DIET":
+      const allRecipes = state.allRecipes;
+      const filteredByDiet =
+        action.payload === "ALL"
+          ? allRecipes
+          : allRecipes.filter((el) =>
+              el.diets.find((el) => el === action.payload)
+            );
+      return {
+        ...state,
+        recipes: filteredByDiet,
+      };
+    case "ORDER_BY_SCORE":
+      let sortedScore =
+        action.payload === "ASC"
+          ? state.recipes.sort(function (a, b) {
+              if (a.score > b.score) {
+                return 1;
+              }
+              if (b.score > a.score) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.recipes.sort(function (a, b) {
+              if (a.score > b.score) {
+                return -1;
+              }
+              if (b.score > a.score) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        recipes: sortedScore,
+      };
     default:
       return {
         state,

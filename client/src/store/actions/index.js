@@ -51,3 +51,25 @@ export function orderByName(payload) {
     }
   };
 }
+export function showCreated(payload){
+  return async(dispatch)=>{
+    try{
+      return dispatch({
+        type: "FILTER_CREATEDS",
+        payload
+      })
+    }catch(error){console.log(error)}
+    }
+}
+export function filterByDiet(payload){
+  return {
+      type: "FILTER_BY_DIET",
+      payload
+  };
+};
+export function orderByScore(payload){
+  return{
+      type: "ORDER_BY_SCORE",
+      payload
+  };
+};
