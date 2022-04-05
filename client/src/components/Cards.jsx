@@ -1,13 +1,16 @@
 import React from "react";
 import "./styles/Cards.css";
 
-const Cards = ({image, title, diets, price}) => {
+const Cards = ({image, title, diets, score, price}) => {
   return (
-      <div>
-        <img src={image} alt="cardimgerror" />
-        <h2>{title}</h2>
-        <p>Diet types: {diets} Kgs</p>
+      <div id="container">
+        <div id="info">
+        <h1>{title}</h1>
+        <p>Diet types: {diets}</p>
+        <p>Score: {score}</p>
         <p>Price: {price}</p>
+        </div>
+        <img src={image} alt="cardimgerror" />
       </div>
   );
 };

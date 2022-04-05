@@ -26,9 +26,9 @@ function Home() {
   const [itemsPerPage, setItemsPerPage] = useState(9);
 
   // Número de páginas que quiero mostrar
-  const [pageNumberLimit] = useState(5);
+  const [pageNumberLimit] = useState(6);
   // Máximo de páginas
-  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(10);
   // Mínimo de páginas
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
@@ -93,7 +93,6 @@ function Home() {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
         <div
-          className={currentPage === number ? "active" : null}
           key={number}
           id={number}
           onClick={handleClick}
@@ -120,22 +119,25 @@ function Home() {
   // }
   let handleName = (e) => {
     e.preventDefault();
-
+    setCurrentPage(1);
     dispatch(orderByName(e.target.value));
   };
   let handleScore = (e) => {
     e.preventDefault();
-
+    setCurrentPage(1);
     dispatch(orderByScore(e.target.value));
   };
   let handleDiets = (e) => {
+    e.preventDefault();
+    setCurrentPage(1);
     dispatch(filterByDiet(e.target.value));
   };
   let handleCreations = (e) => {
+    e.preventDefault();
+    setCurrentPage(1);
     dispatch(showCreated(e.target.value));
   };
   //<--------HANDLERS-------->
-  console.log(currentItems);
   return (
     <div>
       <nav>
@@ -169,9 +171,9 @@ function Home() {
         <label>
           Show by diet/s
           <select onChange={(e) => handleDiets(e)}>
-            <option value="All">All</option>
+            <option value="ALL">All</option>
             {allDiets?.map((el) => {
-              return <option value={el.name}> {el.name} </option>;
+              return <option value={el.name}> {el.name.toUpperCase()} </option>;
             })}
           </select>
         </label>
@@ -193,7 +195,7 @@ function Home() {
           })}
         <div>
           <button
-            className="btn-pag"
+            
             onClick={handlePrevBtn}
             disabled={currentPage === pages[0] ? true : false}
           >
@@ -203,7 +205,7 @@ function Home() {
           {renderPageNumbers}
           {pageIncrementBtn}
           <button
-            className="btn-pag"
+           
             onClick={handleNextBtn}
             disabled={currentPage === pages[pages.length - 1] ? true : false}
           >
