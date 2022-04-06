@@ -22,7 +22,7 @@ const SearchBar = () => {
         onChange={(e) => handleInputChange(e)}
       />
       <button type="submit" onClick={(e) => handleSubmit(e)}>
-        Let me pick
+        Tasty
       </button>
     </div>
   );

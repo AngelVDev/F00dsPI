@@ -1,0 +1,49 @@
+nav{
+    background: rgb(120, 190, 120, 70%);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(5px);
+    position: center;
+    border-radius: 10%;
+    padding: 1rem;
+}
+
+label{
+    font-family: inherit;
+    font-weight: 900;
+    text-shadow: 0px 0.1em #06863b;
+    color:whitesmoke;
+    border-radius: 70%;
+    background: linear-gradient(135deg, #ebadb6 0%, #aceae1 100%)
+}
+label select{
+    background-color: aliceblue;
+    color:darkolivegreen
+}
+input{
+    background-color: aliceblue;
+    color:darkolivegreen
+}
+button {
+    background: #ffcc13;
+    font-family: inherit;
+    padding: 0.6em 1.3em;
+    font-weight: 500;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 0.4em;
+    box-shadow: 0.1em 0.1em;
+    margin-right: 4rem;
+   }
+   
+   button:hover {
+    transform: translate(-0.05em, -0.05em);
+    box-shadow: 0.15em 0.15em;
+   }
+   
+   button:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+   }
+   input{
+       height: 5vh;
+   }

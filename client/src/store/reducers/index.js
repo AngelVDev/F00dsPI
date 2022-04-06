@@ -21,7 +21,7 @@ function rootReducer(state = initialState, action) {
     case "GET_QUERY":
       return {
         ...state,
-        recipes: action.payload,
+        allRecipes: action.payload,
       };
     case "GET_DETAIL":
       return {
@@ -35,20 +35,20 @@ function rootReducer(state = initialState, action) {
     case "FILTER_NAME":
       const sorted =
         action.payload === "ASC"
-          ? state.dogs.sort((a, b) => {
-              if (a.name > b.name) {
+          ? state.recipes.sort((a, b) => {
+              if (a.title > b.title) {
                 return 1;
               }
-              if (b.name > a.name) {
+              if (b.title > a.title) {
                 return -1;
               }
               return 0;
             })
-          : state.dogs.sort((a, b) => {
-              if (a.name > b.name) {
+          : state.recipes.sort((a, b) => {
+              if (a.title > b.title) {
                 return -1;
               }
-              if (a.name > b.name) {
+              if (a.title > b.title) {
                 return 1;
               }
               return 0;
@@ -81,7 +81,7 @@ function rootReducer(state = initialState, action) {
     case "ORDER_BY_SCORE":
       let sortedScore =
         action.payload === "ASC"
-          ? state.recipes.sort(function (a, b) {
+          ? state.allRecipes.sort(function (a, b) {
               if (a.score > b.score) {
                 return 1;
               }

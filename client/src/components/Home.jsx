@@ -13,6 +13,7 @@ import Cards from "./Cards";
 // import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
 import Creator from "./Creator";
+import "./styles/Home.css"
 //<--------------------HOME-------------------->
 function Home() {
   const allDiets = useSelector((state) => state.diets);
@@ -49,13 +50,14 @@ function Home() {
         pages.push(i);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipes]);
 
   // Información de los items que voy a mostrar en cada página
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = recipes?.slice(indexOfFirstItem, indexOfLastItem);
-
+//<-----P.HANDLERS----->
   const handleClick = (event) => {
     setCurrentPage(Number(event.target.id));
   };
@@ -73,10 +75,10 @@ function Home() {
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
   };
-
   const handleMoreBtn = () => {
     setItemsPerPage(itemsPerPage + 8);
   };
+  //<-----P.HANDLERS----->
 
   let pageIncrementBtn = null;
   if (pages.length > maxPageNumberLimit) {
@@ -109,14 +111,8 @@ function Home() {
     dispatch(getRecipes());
     dispatch(getDietTypes());
   }, [dispatch]);
-  // useEffect(() => {
-  //
-  // }, [dispatch]);
-  //<--------HANDLERS-------->
-  // function handleClick(event) {
-  //   event.preventDefault();
-  //   dispatch(getRecipes());
-  // }
+  //<--------F-HANDLERS-------->
+
   let handleName = (e) => {
     e.preventDefault();
     setCurrentPage(1);
@@ -137,15 +133,13 @@ function Home() {
     setCurrentPage(1);
     dispatch(showCreated(e.target.value));
   };
-  //<--------HANDLERS-------->
+  //<--------F-HANDLERS-------->
   return (
     <div>
       <nav>
-        <button>
-          <Link to={<Creator />}>SHARE YOUR RECIPE</Link>
-        </button>
         <button onClick={(event) => handleClick(event)}>Clear filters</button>
         <SearchBar />
+        <button><Link to={<Creator />}>SHARE YOUR RECIPE</Link></button>
         <label>
           Sort by name
           <select onChange={(e) => handleName(e)}>
@@ -173,7 +167,7 @@ function Home() {
           <select onChange={(e) => handleDiets(e)}>
             <option value="ALL">All</option>
             {allDiets?.map((el) => {
-              return <option value={el.name}> {el.name.toUpperCase()} </option>;
+              return <option value={el.name}> {el.name.toUpperCase(0)} </option>;
             })}
           </select>
         </label>
@@ -194,24 +188,12 @@ function Home() {
             );
           })}
         <div>
-          <button
-            
-            onClick={handlePrevBtn}
-            disabled={currentPage === pages[0] ? true : false}
-          >
-            Prev
-          </button>
+          <button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Prev</button>
           {pageDecrementBtn}
           {renderPageNumbers}
           {pageIncrementBtn}
-          <button
-           
-            onClick={handleNextBtn}
-            disabled={currentPage === pages[pages.length - 1] ? true : false}
-          >
-            Next
-          </button>
           <button onClick={handleMoreBtn}>Show more recipes</button>
+          <button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</button>
         </div>
       </div>
     </div>
