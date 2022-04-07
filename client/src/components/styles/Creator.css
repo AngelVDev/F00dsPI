@@ -1,0 +1,79 @@
+h1{
+    color:blueviolet
+}
+
+form{
+    text-align: center;
+    width: 70vw;
+    height: 80vh;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.25) 0%, rgba(0, 255, 33, 0.35) 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    flex-direction: column;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+/* .button {
+    background: #ffcc13;
+    font-family: inherit;
+    padding: 0.6em 1.3em;
+    font-weight: 500;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 0.4em;
+    box-shadow: 0.1em 0.1em;
+    margin-right: 4rem;
+   } */
+.breaker {
+    height: 1vh;
+    width: 0.5vw;
+    background-color: #e62222;
+    display: flex;
+    align-items: center;
+    background: red;
+    color:whitesmoke
+}
+.breaker:hover {
+    background: #ff3636;
+   }
+/* From cssbuttons.io by @EmmaxPlay */
+.spinner {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+   }
+   
+   .spinner::before,
+   .spinner:after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+   }
+   
+   .spinner:before {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(0deg, #ff00cc 0%, #333399 100%);
+    animation: spin8932 .5s infinite linear;
+   }
+   
+   .spinner:after {
+    width: 85%;
+    height: 85%;
+    background-color: #212121;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   }
+   
+   @keyframes spin8932 {
+    to {
+     transform: rotate(360deg);
+    }
+   }

@@ -16,15 +16,15 @@ const Detail = () => {
       return (
     <div id="MASTERCARD">
       <h1>Detailed Info</h1>
-      <h2>{recs[0].title}</h2>
-      <img src={recs[0].image} alt="comida" />
+      <h2>{recs.title}</h2>
+      <img src={recs.image} alt="comida" />
       <div>
-        <p alt="Summ">Summary: {recs[0].summary}</p>
-        <p alt="Steps">Steps: {recs[0].steps}</p>
-        <p alt="Score">Score: {recs[0].score} </p>
-        <p alt="H.Score">Healthiness: {recs[0].h_score} </p>
-        <p alt="Price">Price: {recs[0].price} </p>
-        <p>Diet types: <span>{!recs[0].createdInDb? recs[0].diets + " ": recs[0].diets.map(el=> el.name + " ")}</span></p>
+        <p dangerouslySetInnerHTML={{ __html: recs.summary }} />
+        <p alt="Steps">Steps: {recs.steps}</p>
+        <p alt="Score">Score: {recs.score} </p>
+        <p alt="H.Score">Healthiness: {recs.h_score} </p>
+        <p alt="Price">Price: ${recs.price} </p>
+        <p>Diet types: <span>{!recs.createdInDb? recs.diets + " ": recs.diets.map(el=> el.name + " ")}</span></p>
       </div>
       <button><Link to= "/home">Let's go back</Link></button>
     </div>)

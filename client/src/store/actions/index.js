@@ -27,7 +27,6 @@ export function getDetails(id) {
   return async function (dispatch){
     try{
         var json= await axios.get("http://localhost:3001/recipes/" + id);
-        console.log(json.data)
         return dispatch({
             type: "GET_DETAIL",
             payload: json.data

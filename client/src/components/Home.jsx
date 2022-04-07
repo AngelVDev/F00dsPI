@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import Cards from "./Cards";
 // import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
-import Creator from "./Creator";
 import "./styles/Home.css"
 //<--------------------HOME-------------------->
 function Home() {
