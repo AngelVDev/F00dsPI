@@ -7,7 +7,8 @@ module.exports = (sequelize) => {
     'recipe',
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
@@ -25,7 +26,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
       },
       steps: {
-        type: DataTypes.TEXT,
+        type: DataTypes.ARRAY(DataTypes.TEXT),
       },
       price: {
         type: DataTypes.INTEGER,

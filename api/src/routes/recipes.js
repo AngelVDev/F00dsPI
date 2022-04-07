@@ -26,39 +26,35 @@ router.get('/recipes', async (req, res) => {
 
 router.get('/recipes/:id', async (req, res) => {
   const { id } = req.params;
-  const idRecipe = await getAllRecipes();
-  let idFormat = 0;
-  if (id.length < 7) {
-    idFormat = parseInt(id);
+  const recipes = await getAllRecipes();
+  const recipeById = recipes.find((element) => element.id === id);
+  if (!recipeById) {
+    res.status(404).send('INVALID ID');
   } else {
-    idFormat = id;
-  }
-  const recipeById = await idRecipe.filter((el) => el.id === idFormat);
-  if (recipeById.length) {
-    res.status(200).send(recipeById);
-  } else {
-    res.status(404).send('recipe not found or wrong id');
+    res.status(200).json(recipeById);
   }
 });
 router.post('/recipes', async (req, res) => {
   const {
-    id, title, summary, score, hScore, steps, diets, price,
+    title, summary, score, hScore, steps, diets, price,
   } = req.body;
+  try {
+    const recipeNew = await Recipe.create({
+      title,
+      summary,
+      score,
+      hScore,
+      steps,
+      price,
+    });
 
-  const recipeNew = await Recipe.create({
-    id,
-    title,
-    summary,
-    score,
-    hScore,
-    steps,
-    price,
-  });
+    const dietDb = await Diet.findAll({ where: { name: diets } });
+    recipeNew.addDiet(dietDb);
 
-  const dietDb = await Diet.findAll({ where: { name: diets } });
-  recipeNew.addDiet(dietDb);
-
-  res.send('Recipe added : ¡SUCCESS!');
+    res.json(recipeNew);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
