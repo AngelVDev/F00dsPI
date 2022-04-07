@@ -90,7 +90,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.recipes.sort(function (a, b) {
+          : state.allRecipes.sort(function (a, b) {
               if (a.score > b.score) {
                 return -1;
               }

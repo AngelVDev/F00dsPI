@@ -76,7 +76,7 @@ function Home() {
     }
   };
   const handleMoreBtn = () => {
-    setItemsPerPage(itemsPerPage + 8);
+    setItemsPerPage(itemsPerPage + 9);
   };
   //<-----P.HANDLERS----->
 
@@ -112,6 +112,10 @@ function Home() {
     dispatch(getDietTypes());
   }, [dispatch]);
   //<--------F-HANDLERS-------->
+  let handleFilters = (e) => {
+    e.preventDefault();
+    dispatch(getRecipes())
+};
 
   let handleName = (e) => {
     e.preventDefault();
@@ -137,9 +141,9 @@ function Home() {
   return (
     <div>
       <nav>
-        <button onClick={(event) => handleClick(event)}>Clear filters</button>
+        <button onClick={(event) => handleFilters(event)}>Clear filters</button>
         <SearchBar />
-        <button><Link to={<Creator />}>SHARE YOUR RECIPE</Link></button>
+        <button><Link to="/create">SHARE YOUR RECIPE</Link></button>
         <label>
           Sort by name
           <select onChange={(e) => handleName(e)}>
@@ -167,7 +171,7 @@ function Home() {
           <select onChange={(e) => handleDiets(e)}>
             <option value="ALL">All</option>
             {allDiets?.map((el) => {
-              return <option value={el.name}> {el.name.toUpperCase(0)} </option>;
+              return <option value={el.name}> {el.name.toUpperCase()} </option>;
             })}
           </select>
         </label>
@@ -180,8 +184,7 @@ function Home() {
                 <Cards
                   image={recs.image}
                   title={recs.title}
-                  types={recs.diets}
-                  score={recs.score}
+                  diets={recs.diets}
                   key={recs.id}
                 />
               </Link>

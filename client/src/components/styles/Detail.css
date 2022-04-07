@@ -1,0 +1,13 @@
+#MASTERCARD{
+    position: center;
+    color:aliceblue;
+    box-shadow: 0 15px 30px 1px greenyellow;
+    background: rgba(255, 255, 255, 0.40);
+    text-align: center;
+    border-radius: 5px;
+    height: auto;
+    width: 90vw;
+  }
+/* .button{
+    position: center;
+} */

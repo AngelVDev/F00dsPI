@@ -48,7 +48,7 @@ export function orderByName(payload) {
     try {
       return dispatch({
         type: "FILTER_NAME",
-        payload: payload,
+        payload
       });
     } catch (error) {
       console.log(error);
