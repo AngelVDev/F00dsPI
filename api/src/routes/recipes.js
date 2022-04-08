@@ -44,14 +44,14 @@ router.post('/recipes', async (req, res) => {
       summary,
       score,
       hScore,
-      steps,
+      steps: [steps],
       price,
     });
 
     const dietDb = await Diet.findAll({ where: { name: diets } });
     recipeNew.addDiet(dietDb);
 
-    res.json(recipeNew);
+    res.status(201).json(recipeNew);
   } catch (error) {
     console.log(error);
   }

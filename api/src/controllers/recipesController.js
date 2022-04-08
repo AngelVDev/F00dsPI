@@ -14,7 +14,7 @@ const getApiInfo = async () => {
     title: food.title,
     summary: food.summary,
     score: food.spoonacularScore,
-    h_score: food.healthScore,
+    hScore: food.healthScore,
     steps: food.analyzedInstructions[0]?.steps.map((el) => `${el.step}`),
     diets: food.diets,
     price: food.pricePerServing,
