@@ -10,3 +10,14 @@ body {
   justify-content: center;
   background-attachment: fixed;
 }
+.JUMBOTRON{
+  background:radial-gradient(#a000fe 0%, #18004d 100%);
+  border-radius: 15px;
+  width: 50vw;
+}
+.JUMBOFONT{
+
+}
+.JUMBUTTON{
+
+}

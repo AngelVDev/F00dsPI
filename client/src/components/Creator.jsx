@@ -128,6 +128,8 @@ const Creator = () => {
           <label>Score: 
           <input
             type="number"
+            min="1"
+            max="100"
             value={input.spoonacularScore}
             name="spoonacularScore"
             onChange={(e) => handleChange(e)}
@@ -139,6 +141,8 @@ const Creator = () => {
           <label>Healthiness: 
           <input
             type="number"
+            min="1"
+            max="100"
             value={input.healthScore}
             name="healthScore"
             onChange={(e) => handleChange(e)}
@@ -174,19 +178,20 @@ const Creator = () => {
           ))}
         </select>
         <ul>
-          <li>{input.diets.map((el) => el.toUpperCase().length >= 1 ? el.toUpperCase() + " ," : ".")}</li>
-        </ul>
-        <button type="submit">Create Recipe</button>
-        <Link to="/home">
-          <button>Back</button>
-        </Link>
-      </form>
       {input.diets.map((el) => (
-        <div>
-          <p>{el.toUpperCase()}</p>
+        <div class="NiGHTS">
           <button class="breaker" onClick={() => handleDelete(el)}>x</button>
+          <p>
+            {el.toUpperCase()}
+          </p>
         </div>
       ))}
+        </ul>
+        <button class="butt" type="submit">Create Recipe</button>
+        <Link to="/home">
+          <button class="butt" >Back</button>
+        </Link>
+      </form>
     </div>
 
   );} else {

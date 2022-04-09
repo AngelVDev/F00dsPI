@@ -81,12 +81,12 @@ function Home() {
 
   let pageIncrementBtn = null;
   if (pages.length > maxPageNumberLimit) {
-    pageIncrementBtn = <button onClick={handleNextBtn}>&hellip;</button>;
+    pageIncrementBtn = <button class="butt" onClick={handleNextBtn}>&hellip;</button>;
   }
 
   let pageDecrementBtn = null;
   if (minPageNumberLimit >= 1) {
-    pageDecrementBtn = <button onClick={handlePrevBtn}>&hellip;</button>;
+    pageDecrementBtn = <button class="butt" onClick={handlePrevBtn}>&hellip;</button>;
   }
 
   // Renderizamos los números de las páginas como (<Li>)
@@ -120,6 +120,7 @@ function Home() {
     e.preventDefault();
     setCurrentPage(1);
     dispatch(orderByName(e.target.value));
+    alert(e.target.value)
   };
   let handleScore = (e) => {
     e.preventDefault();
@@ -140,9 +141,9 @@ function Home() {
   return (
     <div>
       <nav>
-        <button onClick={(event) => handleFilters(event)}>Clear filters</button>
+        <button class="butt" onClick={(event) => handleFilters(event)}>Clear filters</button>
         <SearchBar />
-        <button><Link to="/create">SHARE YOUR RECIPE</Link></button>
+        <button class="butt" ><Link to="/create">SHARE YOUR RECIPE</Link></button>
         <label>
           Sort by name
           <select onChange={(e) => handleName(e)}>
@@ -190,12 +191,12 @@ function Home() {
             );
           })}
         <div>
-          <button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Prev</button>
+          <button class="butt" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Prev</button>
           {pageDecrementBtn}
           {renderPageNumbers}
           {pageIncrementBtn}
-          <button onClick={handleMoreBtn}>Show more recipes</button>
-          <button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</button>
+          <button class="butt" onClick={handleMoreBtn}>Show more recipes</button>
+          <button class="butt" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</button>
         </div>
       </div>
     </div>

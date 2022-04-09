@@ -6,7 +6,11 @@ const Cards = ({image, title, diets}) => {
       <div id="container">
         <div id="info">
         <h1>{title}</h1>
-        <p>Diet types: {diets}</p>
+        <p>Diets: {diets.map((el)=> 
+        el.length ?
+          el.charAt(0).toUpperCase() + el.slice(1) + ", " 
+        : el.charAt(0).toUpperCase() + el.slice(1)
+        )}</p>
         </div>
         <img src={image} alt="cardimgerror" />
       </div>

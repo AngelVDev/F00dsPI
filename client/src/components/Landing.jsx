@@ -4,10 +4,10 @@ import "./styles/Landing.css";
 
 const Landing = () => {
   return (
-    <div>
-      <h1>Today's menu</h1>
+    <div class="JUMBOTRON">
+      <h1 class="JUMBOFONT">Today's menu</h1>
       <Link to="/home">
-        <button>¡Let's see them!</button>
+        <button class="JUMBUTTON">¡Let's see them!</button>
       </Link>
     </div>
   );
