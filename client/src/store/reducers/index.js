@@ -1,6 +1,6 @@
 const initialState = {
-  recipes: [],
-  allRecipes: [],
+  recipes: [], //copia burda para hacerle magia
+  allRecipes: [],//las buenas recetas
   diets: [],
   recipeDetail: [],
 };
@@ -35,7 +35,7 @@ function rootReducer(state = initialState, action) {
     case "FILTER_NAME":
       const sorted =
         action.payload === "ASC"
-          ? state.recipes.sort((a, b) => {
+          ? state.allRecipes.sort((a, b) => {
               if (a.title > b.title) {
                 return 1;
               }
@@ -44,7 +44,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.recipes.sort((a, b) => {
+          : state.allRecipes.sort((a, b) => {
               if (a.title > b.title) {
                 return -1;
               }
@@ -55,7 +55,7 @@ function rootReducer(state = initialState, action) {
             });
       return {
         ...state,
-        recipes: sorted,
+        allRecipes: sorted,
       };
     case "FILTER_CREATEDS":
       const isCreated =
@@ -105,7 +105,7 @@ function rootReducer(state = initialState, action) {
       };
     default:
       return {
-        state,
+        ...state,
       };
   }
 }

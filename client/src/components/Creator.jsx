@@ -179,24 +179,24 @@ const Creator = () => {
         </select>
         <ul>
       {input.diets.map((el) => (
-        <div class="NiGHTS">
-          <button class="breaker" onClick={() => handleDelete(el)}>x</button>
+        <div className="NiGHTS">
+          <button className="breaker" onClick={() => handleDelete(el)}>x</button>
           <p>
             {el.toUpperCase()}
           </p>
         </div>
       ))}
         </ul>
-        <button class="butt" type="submit">Create Recipe</button>
+        <button className="butt" type="submit">Create Recipe</button>
         <Link to="/home">
-          <button class="butt" >Back</button>
+          <button className="butt" >Back</button>
         </Link>
       </form>
     </div>
 
   );} else {
     return(
-    <div class="spinner"></div>
+    <div className="spinner"></div>
     )
   }
 };

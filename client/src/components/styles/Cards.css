@@ -6,13 +6,13 @@
 }
 #container{
   box-shadow: 0 0px 30px 1px rgba(247, 36, 152, 0.473);
-	background: rgba(255, 255, 255, 0.90);
-	text-align: center;
-	border-radius: 5px;
-	overflow: hidden;
-	margin: 5em auto;
-	height: 60vh;
-	width: 35vw;
+  background: rgba(255, 255, 255, 0.90);
+  text-align: center;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 5em auto;
+  height: 60vh;
+  width: 35vw;
   padding: 1.4rem;
 }
 #info{
