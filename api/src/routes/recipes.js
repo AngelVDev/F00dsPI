@@ -5,19 +5,19 @@ const { Recipe, Diet } = require('../db');
 const { getAllRecipes } = require('../controllers/recipesController');
 
 router.get('/recipes', async (req, res) => {
-  const { title } = req.query;
-  const totalRecipes = await getAllRecipes();
   try {
+    const { title } = req.query;
+    const totalRecipes = await getAllRecipes();
     /* Try para el query */
     if (title) {
       // eslint-disable-next-line max-len
-      const titleRecipe = await totalRecipes.filter((el) => el.title.toLowerCase().includes(title.toLowerCase()));
+      const titleRecipe = totalRecipes.filter((element) => element.title.includes(title.toLowerCase()));
       // eslint-disable-next-line no-unused-expressions
-      titleRecipe.length
-        ? res.status(200).send(titleRecipe)
-        : res.status(404).send('Recipe not found');
+      !titleRecipe
+        ? res.status(404).json('Recipe not found')
+        : res.status(200).send(titleRecipe);
     } else {
-      res.status(200).send(totalRecipes);
+      res.status(200).json(totalRecipes);
     }
   } catch (err) {
     console.log(err);
