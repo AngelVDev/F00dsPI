@@ -33,17 +33,22 @@ router.get('/recipes/:id', async (req, res) => {
   const { id } = req.params;
   const recipes = await getAllRecipes();
   try {
-    const recipeById = await Recipe.findByPk(id, {
-      include: {
-        model: Diet,
-      },
-    });
+    const recipeById = recipes.find((element) => element.id === id);
+    // Intento traer el elemento que coincida por id desde la API
+    // o desde la primaryKey() en la base de datos
     if (!recipeById) {
-      res.status(404).send('INVALID ID');
+      const recipeByDB = await Recipe.findByPk(id, {
+        include: {
+          model: Diet,
+        },
+      });
+      // eslint-disable-next-line no-unused-expressions
+      recipeByDB
+        ? res.status(200).json(recipeByDB)
+        : res.status(404).send('INVALID ID');
     } else {
-      res.status(200).send(recipeById);
+      res.status(200).json(recipeById);
     }
-    res.json(recipes);
   } catch (err) {
     console.log('\x1b[36m%s\x1b[0m', err);
   }
