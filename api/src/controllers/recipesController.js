@@ -19,6 +19,7 @@ const getApiInfo = async () => {
     diets: food.diets,
     price: food.pricePerServing,
   }));
+  // eslint-disable-next-line no-unused-vars
   return bunchRecipes;
 };
 
@@ -36,9 +37,11 @@ const getDbInfo = async () => {
 
 const getAllRecipes = async () => {
   const apiInfo = await getApiInfo();
+  // eslint-disable-next-line no-unused-vars
   const dbInfo = await getDbInfo();
   const allInfo = apiInfo.concat(dbInfo);
-  return allInfo;
+  // eslint-disable-next-line no-unused-vars
+  return allInfo.filter(Boolean);
 };
 
-module.exports = { getAllRecipes };
+module.exports = { getAllRecipes, getApiInfo };

@@ -1,46 +1,51 @@
+/* eslint-disable prefer-const */
+/* eslint-disable no-console */
 const { Router } = require('express');
 
 const router = Router();
 const { Recipe, Diet } = require('../db');
 const { getAllRecipes } = require('../controllers/recipesController');
 
-router.get('/search/:id', async (req, res) => {
-  const { id } = req.params;
-  const back = await getAllRecipes();
-  if (id.length) {
-    const recipeById = await back.filter((e) => e.id === id);
-    res.status(200).json(recipeById);
-  }
-});
-router.get('/recipes', async (req, res, next) => {
-  const { title } = req.query;
-  const totalRecipes = await getAllRecipes();
-  console.log(totalRecipes.price);
-  /* Try para el query */
-  if (title) {
-    try {
+// eslint-disable-next-line consistent-return
+router.get('/recipes', async (req, res) => {
+  try {
+    const { title } = req.query;
+
+    let recipesTotal = await getAllRecipes();
+
+    // eslint-disable-next-line no-unused-vars
+    if (title) {
       // eslint-disable-next-line max-len
-      const titleRecipe = await totalRecipes?.filter((e) => e.title.includes(title.toLowerCase()));
+      const recipeTitle = recipesTotal.filter((el) => el.title.toLowerCase().includes(title.toLowerCase()));
       // eslint-disable-next-line no-unused-expressions
-      !titleRecipe
-        ? res.status(404).send('Recipe not found')
-        : res.status(200).json(titleRecipe);
-    } catch (err) {
-      next(err);
+      recipeTitle.length
+        ? res.status(200).send(recipeTitle)
+        : res.status(404).send('No se encontró la receta');
+    } else {
+      res.status(200).json(recipesTotal);
     }
-  } else {
-    res.status(200).json(totalRecipes);
+  } catch (err) {
+    console.log(err);
   }
 });
 
 router.get('/recipes/:id', async (req, res) => {
   const { id } = req.params;
   const recipes = await getAllRecipes();
-  const recipeById = recipes.find((element) => element.id === id);
-  if (!recipeById) {
-    res.status(404).send('INVALID ID');
-  } else {
-    res.status(200).json(recipeById);
+  try {
+    const recipeById = await Recipe.findByPk(id, {
+      include: {
+        model: Diet,
+      },
+    });
+    if (!recipeById) {
+      res.status(404).send('INVALID ID');
+    } else {
+      res.status(200).send(recipeById);
+    }
+    res.json(recipes);
+  } catch (err) {
+    console.log('\x1b[36m%s\x1b[0m', err);
   }
 });
 router.post('/recipes', async (req, res) => {
@@ -60,7 +65,7 @@ router.post('/recipes', async (req, res) => {
     const dietDb = await Diet.findAll({ where: { name: diets } });
     recipeNew.addDiet(dietDb);
 
-    res.status(201).json(recipeNew);
+    res.status(201).send(recipeNew);
   } catch (error) {
     console.log(error);
   }
