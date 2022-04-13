@@ -29,7 +29,7 @@ const getDbInfo = async () => {
       model: Diet,
       attributes: ['name'],
       through: {
-        attributes: [],
+        atributes: [],
       },
     },
   });
@@ -44,4 +44,4 @@ const getAllRecipes = async () => {
   return allInfo.filter(Boolean);
 };
 
-module.exports = { getAllRecipes, getApiInfo };
+module.exports = { getAllRecipes, getApiInfo, getDbInfo };

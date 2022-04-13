@@ -84,5 +84,29 @@ router.get('/:id/delete', async (req, res) => {
     console.log(err);
   }
 });
+router.put('/:id/modify', async (req, res) => {
+  const {
+    id, title, summary, score, hScore, steps, price,
+  } = req.body;
+  const recipeByDB = await Recipe.findByPk(id);
+  try {
+    if (recipeByDB) {
+      const change = await Recipe.update(
+        title,
+        summary,
+        score,
+        hScore,
+        steps,
+        price,
+        {
+          where: id,
+        },
+      );
+      res.send(change);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
