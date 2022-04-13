@@ -20,7 +20,7 @@ router.get('/recipes', async (req, res) => {
       // eslint-disable-next-line no-unused-expressions
       recipeTitle.length
         ? res.status(200).send(recipeTitle)
-        : res.status(404).send('No se encontró la receta');
+        : res.status(404).send('RECIPE NOT FOUND');
     } else {
       res.status(200).json(recipesTotal);
     }
@@ -65,12 +65,11 @@ router.post('/recipes', async (req, res) => {
       hScore,
       steps: [steps],
       price,
+      diets,
     });
-
     const dietDb = await Diet.findAll({ where: { name: diets } });
     recipeNew.addDiet(dietDb);
-
-    res.status(201).send(recipeNew);
+    res.status(201).json(recipeNew);
   } catch (error) {
     console.log(error);
   }
