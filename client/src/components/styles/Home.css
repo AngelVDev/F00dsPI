@@ -1,8 +1,14 @@
 nav{
-    background: rgb(120, 190, 120, 70%);
+    display: flex;
+    border-radius: 10%;
+    padding: 1rem;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: rgba(133, 89, 158, 0.7);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(5px);
-    position: center;
     border-radius: 10%;
     padding: 1rem;
 }
@@ -47,3 +53,9 @@ input{
 .input{
        height: 5vh;
    }
+.paloma{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

@@ -11,6 +11,7 @@ body {
   background-attachment: fixed;
 }
 .JUMBOTRON{
+  display: none;
   background:radial-gradient(#a000fe 0%, #18004d 100%);
   border-radius: 15px;
   width: 50vw;

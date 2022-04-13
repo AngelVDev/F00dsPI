@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getQRecipes } from "../store/actions";
+import "./styles/SearchBar.css"
 
 const SearchBar = () => {
   let dispatch = useDispatch();
@@ -21,7 +22,7 @@ const SearchBar = () => {
         placeholder="Search your next meal here"
         onChange={(e) => handleInputChange(e)}
       />
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
+      <button className="Sub" type="submit" onClick={(e) => handleSubmit(e)}>
         Tasty
       </button>
     </div>

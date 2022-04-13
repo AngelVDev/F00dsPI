@@ -7,13 +7,16 @@
 #container{
   box-shadow: 0 0px 30px 1px rgba(247, 36, 152, 0.473);
   background: rgba(255, 255, 255, 0.90);
-  text-align: center;
+  display: flex;
   border-radius: 5px;
-  overflow: hidden;
-  margin: 5em auto;
-  height: 60vh;
-  width: 35vw;
+  align-items: center;
+  margin: 3em;
+  height: 40vh;
+  width: 60vw;
   padding: 1.4rem;
+}
+#info p {
+  font-size: 1rem;
 }
 #info{
   /* display: inline-block; */
@@ -26,7 +29,7 @@
 	font-family:Verdana, Geneva, Tahoma, sans-serif, cursive ;
 	display: inline-block;
 	position: relative;
-	font-size: 2rem;
+	font-size: 1rem;
 	color: #344055;
 	margin: 0;
 }

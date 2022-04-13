@@ -58,22 +58,32 @@ function rootReducer(state = initialState, action) {
         allRecipes: sorted,
       };
     case "FILTER_CREATEDS":
-      const isCreated =
-        action.payload === "API"
-          ? state.allRecipes.filter((el) => el.createdInDb)
-          : state.allRecipes.filter((el) => !el.createdInDb);
-      return {
-        ...state,
-        recipes: action.payload === "ALL" ? state.allRecipes : isCreated,
-      };
+
+      const newListOrigin = [...state.allRecipes]
+
+      const filterByOrigin = action.payload === 'ALL'
+        ? newListOrigin
+        : action.payload === 'DB'
+          ? newListOrigin.filter((element) => element.createdInDB)
+          : newListOrigin.filter((element) => !element.createdInDB)
+
+      return { ...state, recipes: filterByOrigin }
+      // const isCreated =
+      //   action.payload === "DB"
+      //     ? state.allRecipes.filter((el) => el.createdInDB)
+      //     : state.allRecipes.filter((el) => !el.createdInDB);
+      // return {
+      //   ...state,
+      //   recipes: action.payload === "ALL" ? state.allRecipes : isCreated,
+      // };
     case "FILTER_BY_DIET":
-      const allRecipes = state.allRecipes;
-      const filteredByDiet =
-        action.payload === "ALL"
-          ? allRecipes
-          : allRecipes.filter((el) =>
-              el.diets.find((el) => el === action.payload)
-            );
+      console.log(state.diets)
+      const tempRecipes = [...state.allRecipes];
+      console.log(tempRecipes)
+      const filteredByDiet = action.payload === "ALL"
+          ? tempRecipes
+          : tempRecipes.filter((element) => element.diets.find((el) => el.name === action.payload))
+          console.log(filteredByDiet)
       return {
         ...state,
         recipes: filteredByDiet,
@@ -103,6 +113,10 @@ function rootReducer(state = initialState, action) {
         ...state,
         recipes: sortedScore,
       };
+    case "DELETE_BY_ID":
+      return {
+        ...state,
+      }
     default:
       return {
         ...state,
