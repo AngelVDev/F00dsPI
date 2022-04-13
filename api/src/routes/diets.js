@@ -11,7 +11,7 @@ router.get('/types', async (req, res) => {
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`,
   );
   const diets = apiUrl.data.results.map((el) => el.diets);
-  const innerDiets = diets.flat(2);
+  const innerDiets = diets.flat();
   innerDiets.map((el) => Diet.findOrCreate({
     where: { name: el },
   }));
@@ -19,6 +19,3 @@ router.get('/types', async (req, res) => {
   res.json(allDiets);
 });
 module.exports = router;
-/*
-const ids = arr.map(o => o.id)
-const filtered = arr.filter(({id}, index) => !ids.includes(id, index + 1)) */
