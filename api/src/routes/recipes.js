@@ -74,5 +74,15 @@ router.post('/recipes', async (req, res) => {
     console.log(error);
   }
 });
+router.get('/:id/delete', async (req, res) => {
+  try {
+    await Recipe.destroy({
+      where: { id: req.params.id },
+    });
+    return res.status(204).json({ msg: 'Deleted recipe' });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
